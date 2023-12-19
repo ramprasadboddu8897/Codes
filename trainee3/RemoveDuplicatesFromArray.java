@@ -1,22 +1,28 @@
 package com.phenom.trainee3;
-import java.util.List;
-import java.util.ArrayList;
+
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Arrays;
 
 public class RemoveDuplicatesFromArray {
-	public static void main(String[] args) {
+    public static void main(String[] args) {
         int[] array = {3, 5, 2, 7, 5, 8, 2};
         int[] uniqueArray = removeDuplicates(array);
         System.out.println("Array with duplicates removed: " + Arrays.toString(uniqueArray));
     }
 
     static int[] removeDuplicates(int[] array) {
-        List<Integer> uniqueList = new ArrayList<>();
+        Set<Integer> uniqueSet = new HashSet<>();
         for (int value : array) {
-            if (!uniqueList.contains(value)) {
-                uniqueList.add(value);
-            }
+            uniqueSet.add(value);
         }
-        return uniqueList.stream().mapToInt(Integer::intValue).toArray();
+
+        int[] uniqueArray = new int[uniqueSet.size()];
+        int index = 0;
+        for (int value : uniqueSet) {
+            uniqueArray[index++] = value;
+        }
+
+        return uniqueArray;
     }
 }
